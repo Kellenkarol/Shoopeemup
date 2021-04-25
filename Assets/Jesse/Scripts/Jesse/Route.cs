@@ -18,8 +18,8 @@ public class Route : MonoBehaviour
             Gizmos.DrawSphere(gizmosPosition, 0.25f);
         }
 
-        Gizmos.DrawLine(new Vector2(controlPoints[0].position.x, controlPoints[0].position.y), new Vector2(controlPoints[1].position.x, controlPoints[1].position.y));
-        Gizmos.DrawLine(new Vector2(controlPoints[2].position.x, controlPoints[2].position.y), new Vector2(controlPoints[3].position.x, controlPoints[3].position.y));
+        Gizmos.DrawLine(new Vector3(controlPoints[0].position.x, controlPoints[0].position.y), new Vector3(controlPoints[1].position.x, controlPoints[1].position.y));
+        Gizmos.DrawLine(new Vector3(controlPoints[2].position.x, controlPoints[2].position.y), new Vector3(controlPoints[3].position.x, controlPoints[3].position.y));
 
     }	
 }

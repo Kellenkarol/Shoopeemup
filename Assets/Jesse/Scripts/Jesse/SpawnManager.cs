@@ -6,9 +6,8 @@ public class SpawnManager : MonoBehaviour
 {
     public GameObject NaveInimiga, Asteroide, chuvaDeAsteroides;
     public GameObject[] NavesInimigaComRota;
-    public float[] delayToSpawnEachNave;
+    public float[] delayToSpawnEachNave; //cada elemento é respectivo aos elementos das NavesInimigaComRota
 	private Transform[] _chuvaDeAsteroides;
-	public float SpawnDelay;
 	
     [Header("Chance de spawnar nave inimiga")]
 	[Range(0.0f, 100.0f)]
@@ -19,11 +18,11 @@ public class SpawnManager : MonoBehaviour
     public float ChanceToSpawnNaveRota;
     
     public Transform[] SpawnPoints;
-    private float NumeroDeNavesNaRota=10, delayToSpawn=0.45f;
+    private int MinNumeroDeNavesNaRota=10;
 
-    float timeAux, countAux, randomNum;
+    float randomNum;
     GameObject prefab, navePref;
-    bool AlreadySpawnAll=true, spawnNaveComRota, canSpawn=true;
+    bool canSpawn=true;
 
 
     // Start is called before the first frame update
@@ -34,7 +33,6 @@ public class SpawnManager : MonoBehaviour
         {
             _chuvaDeAsteroides[c] = chuvaDeAsteroides.transform.GetChild(c);
         }
-        // StartCoroutine(SpawnNaveComRota(10f));
     }
 
 
@@ -45,13 +43,13 @@ public class SpawnManager : MonoBehaviour
         {
             canSpawn = false;
             float r = UnityEngine.Random.Range(0,100);
-            if(r < 15) //15%
+            if(r < 0) //15%
             {
-                StartCoroutine(ChuvaDeAsteroides(UnityEngine.Random.Range(0.4f,0.9f)));
+                StartCoroutine(ChuvaDeAsteroides(UnityEngine.Random.Range(0.35f,0.8f)));
             }
-            else if(r < 45) //30%
+            else if(r < 100) //30%
             {
-                StartCoroutine(SpawnNaveComRota(UnityEngine.Random.Range(2,6)));
+                StartCoroutine(SpawnNaveComRota(UnityEngine.Random.Range(2,6), UnityEngine.Random.Range(MinNumeroDeNavesNaRota,15)));
             }
             else //55%
             {
@@ -63,23 +61,22 @@ public class SpawnManager : MonoBehaviour
     }
 
 
-    private IEnumerator SpawnNaveComRota(float delay)
+    private IEnumerator SpawnNaveComRota(float delay, int quant)
     {
         yield return new WaitForSeconds(delay);
         randomNum = UnityEngine.Random.Range(0,100);
         if(randomNum < ChanceToSpawnNaveRota)
         {
-            // navePref = NavesInimigaComRota[3];
             int num = UnityEngine.Random.Range(0,NavesInimigaComRota.Length);
             navePref = NavesInimigaComRota[num];
-            for(int c=0; c<NumeroDeNavesNaRota; c++)
+            for(int c=0; c<quant; c++)
             {
                 yield return new WaitForSeconds(delayToSpawnEachNave[num]);
                 prefab = Instantiate(navePref);
                 prefab.SetActive(true);
             }
         }
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(3);
         canSpawn = true;
 
         // StartCoroutine(SpawnNaveComRota(delay));
@@ -120,6 +117,8 @@ public class SpawnManager : MonoBehaviour
         }
         canSpawn = true;
     }
+
+
 }
 
 
