@@ -5,19 +5,17 @@ using UnityEngine;
 public class MoveSpawn : MonoBehaviour
 {
 	public float distance, speed;
-	// float leftDist, rightDist;
+
 	bool movingRight=true;
 	Vector3 posAux, camPos, startPos;
+
+
     // Start is called before the first frame update
     void Start()
     {
     	startPos = transform.position;
-        // camPos 		= Camera.main.transform.position;
-        // camPos 		= Camera.main.ScreenToWorldPoint(Camera.main.transform.position);
-        // rightDist 	= camPos.x + Screen.width/2;
-        // leftDist 	= camPos.x - Screen.width/2;
-        // print(Screen.width/2);
     }
+
 
     // Update is called once per frame
     void Update()
@@ -25,26 +23,25 @@ public class MoveSpawn : MonoBehaviour
     	if(movingRight)
     	{
 	        posAux = transform.position + transform.right*speed;
-	        if(posAux.x > startPos.x-distance)
-	        {
-		        transform.position = posAux; 
-	        }
-	        else
-	        {
-	        	movingRight = false;
-	        }
     	}
     	else
     	{
 	        posAux = transform.position - transform.right*speed;
-	        if(posAux.x < startPos.x+distance)
-	        {
-		        transform.position = posAux; 
-	        }
-	        else
-	        {
-	        	movingRight = true;
-	        }
     	}
+        float magn = Magnitude(posAux, startPos);
+        if(magn < distance)
+        {
+        	// print("Oxe painho");
+	        transform.position = posAux; 
+        }
+        else
+        {
+        	movingRight = !movingRight;
+        }
+    }
+
+    private float Magnitude(Vector3 a, Vector3 b)
+    {
+    	return Mathf.Sqrt((b.x-a.x)*(b.x-a.x)+(b.y-a.y)*(b.y-a.y));
     }
 }
