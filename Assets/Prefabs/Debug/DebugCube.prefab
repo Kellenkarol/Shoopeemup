@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb6482427dad0844ca144c2983e7aab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyTag: Enemy
 --- !u!114 &7116985091976643278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -273,7 +274,6 @@ MonoBehaviour:
   shootPoolSize: 50
   zSpawnDistanceToPlayer: 0.5
   timeBetweenEachShoot: 0.1
-  weaponDamage: 4
   weaponLevel: 1
   heatLimit: 1
   heatPerShoot: 0.2
