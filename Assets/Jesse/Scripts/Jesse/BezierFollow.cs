@@ -5,6 +5,8 @@ using UnityEngine;
 public class BezierFollow : MonoBehaviour
 {
 	[SerializeField]
+	private GameObject Route;
+
     private Transform[] routes;
 
     private int routeToGo;
@@ -20,6 +22,12 @@ public class BezierFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    	// routes = Route.GetComponentsInChildren<Transform>();
+    	routes = new Transform[Route.transform.childCount];
+    	for(int c=0; c<Route.transform.childCount; c++)
+    	{
+    		routes[c] = Route.transform.GetChild(c);
+    	}
     	if(routes.Length != 0)
     	{
     		// Quaternion targetRotation = Quaternion.LookRotation (routes[0].transform.parent.transform.position - transform.position);
@@ -64,7 +72,8 @@ public class BezierFollow : MonoBehaviour
         }
         else
         {
-        	Destroy(this.gameObject);
+        	gameObject.SetActive(false);
+        	Destroy(gameObject);
         }
 
     }

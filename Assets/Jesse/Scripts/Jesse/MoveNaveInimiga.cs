@@ -14,6 +14,6 @@ public class MoveNaveInimiga : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position += transform.up*speed;
+        transform.position += transform.up*Time.deltaTime*speed/10;
     }
 }
