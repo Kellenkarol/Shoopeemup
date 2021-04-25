@@ -116,7 +116,7 @@ MonoBehaviour:
     type: 3}
   shootObjectParent: {fileID: 0}
   shootPoolSize: 50
-  zSpawnDistanceToPlayer: 0.5
+  zSpawnDistanceToPlayer: 1.5
   timeBetweenEachShoot: 0.1
   weaponDamage: 4
   weaponLevel: 1
