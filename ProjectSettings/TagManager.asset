@@ -13,11 +13,11 @@ TagManager:
   - 
   - Water
   - UI
-  - Shoot
+  - PlayerShoot
   - Player
   - Shield
-  - 
-  - 
+  - Enemy
+  - EnemyShoot
   - 
   - 
   - 
