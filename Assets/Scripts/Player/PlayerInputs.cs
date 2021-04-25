@@ -37,6 +37,11 @@ namespace Player
             inputActions.Disable();
         }
 
+        private void Update()
+        {
+            Debug.Log(movementDirection);
+        }
+
         private void RegisterShoot(CallbackContext ctx)
         {
             if (ctx.performed) shootButtonPressed = true;
