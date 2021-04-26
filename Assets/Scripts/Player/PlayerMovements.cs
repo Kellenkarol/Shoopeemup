@@ -1,3 +1,4 @@
+using General;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -53,7 +54,7 @@ namespace Player
             {
                 noFuel = true;
                 GM.StartGameOver();
-
+                FindObjectOfType<AudioManager>().Stop(AudioList.gameplayMusic);
             } 
 
         }
@@ -75,6 +76,11 @@ namespace Player
 
                 if (rb.velocity.magnitude > SpaceshipVelocity) rb.velocity = rb.velocity.normalized * SpaceshipVelocity;
             }
+        }
+
+        public void VelocityToZero()
+        {
+            rb.velocity = Vector3.zero;
         }
 
         public bool GetNoFuel()

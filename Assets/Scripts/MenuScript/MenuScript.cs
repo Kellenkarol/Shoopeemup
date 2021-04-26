@@ -69,7 +69,6 @@ public class MenuScript : MonoBehaviour
 
     public void Exit()
     {
-        //fechar jogo
+        Application.Quit();
     }
-
 }

@@ -1501,6 +1501,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: 7
+    clip: {fileID: 8300000, guid: a7d461c70c86b1d45b730472239df031, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!4 &1407165551
 Transform:
   m_ObjectHideFlags: 0
@@ -1863,7 +1869,7 @@ MonoBehaviour:
       type: 3}
     size: 10
   enemyObjectParent: {fileID: 1906256975}
-  forceHordeIndex: 4
+  forceHordeIndex: -1
   hordesList:
   - tag: normal
     quantity: 5
@@ -2434,11 +2440,6 @@ PrefabInstance:
       propertyPath: SB
       value: 
       objectReference: {fileID: 4015705570792404042}
-    - target: {fileID: 4184539947467001770, guid: 706449e7c4842b9478517553b24f05ac,
-        type: 3}
-      propertyPath: fuelTank
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 8411209549431004775, guid: 706449e7c4842b9478517553b24f05ac,
         type: 3}
       propertyPath: shootObjectParent
