@@ -56,7 +56,8 @@ namespace Enemies
         private void ActivateShoot()
         {
             currentShootTimeVariance = GetNewShootTimeVariance();
-            FindObjectOfType<AudioManager>().Play(AudioList.enemyShoot);
+            // FindObjectOfType<AudioManager>().Play(AudioList.enemyShoot);
+            SoundManager.PlaySound("tiroInimigo");
 
             for (int i = 0; i < spawnPoint.Length; i++)
             {

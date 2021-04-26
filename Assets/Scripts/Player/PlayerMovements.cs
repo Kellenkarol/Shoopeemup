@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Player
 {
+
     public enum movementMode
     {
         SpaceShooterType,
@@ -30,6 +31,9 @@ namespace Player
 
         private Rigidbody rb;
 
+        public GameoverManager GM;
+        public ShowBattery SB;
+
         private void Awake()
         {
             rb = GetComponent<Rigidbody>();
@@ -44,8 +48,14 @@ namespace Player
         private void Update()
         {
             currentFuel -= Time.deltaTime * fuelCostPerSecond;
+            SB.UpdateBatteryFill(fuelTank, currentFuel);
+            if (currentFuel <= 0)
+            {
+                noFuel = true;
+                GM.StartGameOver();
 
-            if (currentFuel <= 0) noFuel = true;
+            } 
+
         }
 
         private void Move(Vector2 direction)

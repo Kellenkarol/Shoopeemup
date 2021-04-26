@@ -6,16 +6,16 @@ using UnityEngine.UI;
 
 public class GameoverManager : MonoBehaviour
 {
-	public bool IsInGameoverScene;
+	// public bool IsInGameoverScene;
 	public Text input;
 	public GameObject gameOverScreen, gameOverScoreScreen, fadeIn, fadeOut;
     // Start is called before the first frame update
     void Start()
     {
-    	if(!IsInGameoverScene)
-    	{
-    		StartGameOver();
-    	}
+    	// if(!IsInGameoverScene)
+    	// {
+    	// 	StartGameOver();
+    	// }
     }
 
     // Update is called once per frame
@@ -35,7 +35,7 @@ public class GameoverManager : MonoBehaviour
     {
     	fadeOut.SetActive(true);
     	yield return new WaitForSeconds(1.2f);
-		// SceneManager.LoadScene();
+		SceneManager.LoadScene(0);
     }
 
 
@@ -49,7 +49,7 @@ public class GameoverManager : MonoBehaviour
     {
     	fadeOut.SetActive(true);
     	yield return new WaitForSeconds(1.2f);
-		SceneManager.LoadScene(0);
+		SceneManager.LoadScene(1);
     }
 
 
@@ -73,10 +73,10 @@ public class GameoverManager : MonoBehaviour
 
     private IEnumerator _StartGameOver()
     {
-    	yield return new WaitForSeconds(IsInGameoverScene ? 0 : 3);
+    	yield return new WaitForSeconds(1.5f);
     	fadeOut.SetActive(true);
     	yield return new WaitForSeconds(1.2f);
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(2);
 
     }
 

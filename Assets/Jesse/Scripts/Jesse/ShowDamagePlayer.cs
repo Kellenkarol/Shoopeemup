@@ -13,6 +13,8 @@ public class ShowDamagePlayer : MonoBehaviour
 				  green = new Color(0f,1f,0f,1f), 
 				  white = new Color(1f,1f,1f,1f);
 
+	bool playLastTime;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,25 +42,33 @@ public class ShowDamagePlayer : MonoBehaviour
 
     private IEnumerator _Damage(float maxLife, float currentLife)
     {
-    	// yield return new WaitForSeconds(2); 
-    	// while(true)
-    	// {
+    		if(!playLastTime)
+    		{
+		    	SoundManager.PlaySound("danoNave");
+    		}
 	    	lifeBar.fillAmount = currentLife/maxLife;
-	    	// lifeBar.fillAmount-=0.1f;
 	    	lifeValue.text = Mathf.Ceil(lifeBar.fillAmount*100)+"%";
 	    	if(Mathf.Ceil(lifeBar.fillAmount*100)!=0)
 	    	{
-		    	SoundManager.PlaySound("danoNave");
+		    	imgs[0].gameObject.SetActive(false);
 		    	imgs[1].gameObject.SetActive(false);
 		    	imgs[2].gameObject.SetActive(true);
 		    	// back.color = red;
-		    	yield return new WaitForSeconds(0.75f); 
+		    	yield return new WaitForSeconds(0.5f); 
 		    	// back.color = white;
-		    	imgs[2].gameObject.SetActive(false);
+		    	if(Mathf.Ceil(lifeBar.fillAmount*100)!=0)
+		    	{
+			    	imgs[2].gameObject.SetActive(false);
+			    	imgs[0].gameObject.SetActive(true);
+		    	}
 		    	yield return new WaitForSeconds(2); 
 	    	}
+	    	else
+	    	{
+	    		playLastTime = true;
+		    	imgs[2].gameObject.SetActive(true);
+	    	}
 	    	yield return null;
-    	// }
     }
 
 

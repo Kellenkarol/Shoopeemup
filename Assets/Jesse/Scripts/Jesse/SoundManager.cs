@@ -8,6 +8,9 @@ public class SoundManager : MonoBehaviour
     public Slider sliderVolume;
 
     public GameObject GameObjectMusic;
+    [Range(0.0f, 1.0f)]
+    public float[] SoundLimiter; //0 = som maximo, 1 = som minimo
+
     private AudioSource[] AudioSources;
     public static AudioSource[] AudioSourcesStatic;
 
@@ -16,16 +19,18 @@ public class SoundManager : MonoBehaviour
     {
         AudioSources = GetAudio(GameObjectMusic);
         AudioSourcesStatic = AudioSources;
-        sliderVolume.value = PlayerPrefs.GetFloat("Volume", .5f);
+        sliderVolume.value = PlayerPrefs.GetFloat("VolumeSound", 0.5f);
         SetVolume();
     }
 
 
     public void SetVolume()
     {
+    	int cont=-1;
         foreach(AudioSource _as in AudioSources)
         {
-            _as.volume = sliderVolume.value; 
+        	cont++;
+            _as.volume = (1-SoundLimiter[cont])*sliderVolume.value ; 
         }
     }
 
