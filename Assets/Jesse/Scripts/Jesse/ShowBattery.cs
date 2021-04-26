@@ -10,7 +10,7 @@ public class ShowBattery : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("TestUpdate");
+        // StartCoroutine("TestUpdate");
     }
 
     // Update is called once per frame
@@ -32,7 +32,7 @@ public class ShowBattery : MonoBehaviour
 
     private void UpdateNum(float percent)
     {
-    	num.text = (percent >= 0 ? percent : 0)+"%";
+    	num.text = (percent >= 0 ? (int)(percent) : 0)+"%";
     }
 
 

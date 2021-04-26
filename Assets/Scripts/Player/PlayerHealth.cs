@@ -24,6 +24,9 @@ namespace Player
         private bool isShielding;
         private bool isDestroyed;
 
+        public GameoverManager GM;
+        public ShowDamagePlayer SDP;
+
         private void Awake()
         {
             currentEnergy = shieldEnergyCost;
@@ -83,7 +86,13 @@ namespace Player
                 FindObjectOfType<AudioManager>().Play(AudioList.playerDamaged);
 
                 currentHealth -= damage;
-                if (currentHealth <= 0) isDestroyed = true;
+                SDP.Damage(maxHealth, currentHealth);
+                if (currentHealth <= 0)
+                {
+                	isDestroyed = true;
+                	GM.StartGameOver();
+            	} 
+
             }
         }
 

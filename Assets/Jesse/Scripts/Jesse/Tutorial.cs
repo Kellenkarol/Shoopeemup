@@ -28,6 +28,7 @@ public class Tutorial : MonoBehaviour
     	// {
 	    	// yield return null;
     	// }
+    	yield return new WaitForSeconds(0.2f);
     	animatorExit.SetBool("Skip", true);
 
     	yield return new WaitForSeconds(0.75f);

@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField]int menuValueController;
-    public GameObject selectButton;
+    // [SerializeField]int menuValueController;
+    // public GameObject selectButton;
     
     // Start is called before the first frame update
     void Start()
@@ -32,33 +32,44 @@ public class MenuScript : MonoBehaviour
                 menuValueController++;
             }
         }*/
-        positionUISelectButton();
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            activeButton();
-        }
+        // positionUISelectButton();
+        // if (Input.GetKeyDown(KeyCode.Space))
+        // {
+        //     activeButton();
+        // }
     }
 
-    void positionUISelectButton()
+    // void positionUISelectButton()
+    // {
+    //     selectButton.transform.localPosition = new Vector3(0, 63- (menuValueController*44), 0);
+    // }
+    // void activeButton()
+    // {
+    //     switch (menuValueController)
+    //     {
+    //         case 0:
+    //             SceneManager.LoadScene(1);
+    //             break;
+    //         case 1:
+    //             SceneManager.LoadScene("Settings");
+    //             break;
+    //         case 2:
+    //             SceneManager.LoadScene("Creditos");
+    //             break;
+    //         case 3:
+    //             Application.Quit();
+    //             break;
+    //     }
+    // }
+
+    public void Play()
     {
-        selectButton.transform.localPosition = new Vector3(0, 63- (menuValueController*44), 0);
+        SceneManager.LoadScene(1);
     }
-    void activeButton()
+
+    public void Exit()
     {
-        switch (menuValueController)
-        {
-            case 0:
-                SceneManager.LoadScene("Game");
-                break;
-            case 1:
-                SceneManager.LoadScene("Settings");
-                break;
-            case 2:
-                SceneManager.LoadScene("Creditos");
-                break;
-            case 3:
-                Application.Quit();
-                break;
-        }
+        //fechar jogo
     }
+
 }
