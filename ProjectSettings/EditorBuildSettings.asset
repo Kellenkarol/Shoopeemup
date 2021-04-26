@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Gabriel Barroso.unity
+    guid: 8da122fb25984534ab2d2ef8a2752b18
   m_configObjects: {}

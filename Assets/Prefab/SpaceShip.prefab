@@ -90,7 +90,7 @@ MonoBehaviour:
   shootPoolSize: 20
   zSpawnDistanceToPlayer: 1.5
   timeBetweenEachShoot: 0.1
-  weaponDamage: 4
+  weaponDamage: 6
   weaponLevel: 1
   heatLimit: 1
   heatPerShoot: 0.2
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23835bc5daca08e49affe8072d7659e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 200
   shieldObject: {fileID: 7199302207001802632}
   shieldDuration: 5
   shieldHealth: 50
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpaceshipVelocity: 10
   movement: 0
-  fuelTank: 60
+  fuelTank: 1e+10
   fuelCostPerSecond: 1
   decelerationFactor: 0.04
   angularVelocity: 180
