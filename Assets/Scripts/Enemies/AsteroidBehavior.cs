@@ -71,6 +71,11 @@ namespace Enemies
             if (currentHealth <= 0) Destroyed();
         }
 
+        public float GetDamage()
+        {
+            return damage;
+        }
+
         private void Destroyed()
         {
             gameObject.SetActive(false);

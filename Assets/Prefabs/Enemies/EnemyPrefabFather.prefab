@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 334555537811279441}
   - component: {fileID: -7809485123183096599}
   - component: {fileID: -6909544841492339813}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: EnemyPrefabFather
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,6 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 353ee96a98a53e4469df5dc42ef2b61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionDamage: 30
 --- !u!114 &3120556289458690007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,11 +64,11 @@ MonoBehaviour:
   enemyShootPrefab: {fileID: 1380358109035382866, guid: 2eb5f09c417ea9548af20bf1c8bf3390,
     type: 3}
   enemyShootPoolSize: 3
+  spawnPoint: []
   shootSpeed: 0
   weaponDamage: 10
   timeBetweenShoots: 4
   shootTimeVariance: 2
-  zSpawnDistanceToEnemy: 1.5
 --- !u!114 &8465645367507645370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104,8 +105,8 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
-  m_UseGravity: 1
-  m_IsKinematic: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0

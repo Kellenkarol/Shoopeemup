@@ -21,7 +21,7 @@ namespace Shoot
 
         private void FixedUpdate()
         {
-            rb.velocity = transform.up * shootSpeed;
+            rb.velocity = transform.forward * shootSpeed;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -37,9 +37,19 @@ namespace Shoot
             }
         }
 
+        public void SetBulletSpeed(float speed)
+        {
+            shootSpeed = speed;
+        }
+
         public void SetDamage(float value)
         {
             damage = value;
+        }
+
+        public float GetDamage()
+        {
+            return damage;
         }
     }
 }

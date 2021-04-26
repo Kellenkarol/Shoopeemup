@@ -4,6 +4,6 @@ namespace Enums
     {
         health,
         energy,
-        money
+        fuel
     }
 }

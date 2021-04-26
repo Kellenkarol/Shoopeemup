@@ -2,6 +2,7 @@ namespace Interfaces
 {
     public interface IEnemyMovement
     {
-        public void ResetEnemyMovement();
+        void ResetEnemyMovement();
+        void CheckPosition();
     }
 }

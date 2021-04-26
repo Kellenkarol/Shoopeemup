@@ -71,5 +71,10 @@ namespace Player
         {
             return noFuel;
         }
+
+        public void AddFuelToTank(float fuel)
+        {
+            currentFuel += fuel;
+        }
     }
 }
