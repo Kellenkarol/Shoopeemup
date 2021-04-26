@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using General;
 
 public class SoundManager : MonoBehaviour
 {
@@ -30,10 +31,14 @@ public class SoundManager : MonoBehaviour
         foreach(AudioSource _as in AudioSources)
         {
         	cont++;
-            _as.volume = (1-SoundLimiter[cont])*sliderVolume.value ; 
+            _as.volume = (1-SoundLimiter[cont])*sliderVolume.value;
         }
     }
 
+    public void SaveVolume()
+    {
+        PlayerPrefs.SetFloat("VolumeSound", (1 - SoundLimiter[0]) * sliderVolume.value);
+    }
 
     private AudioSource[] GetAudio(GameObject MusicGameObject)
     {

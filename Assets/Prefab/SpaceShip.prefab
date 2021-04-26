@@ -112,6 +112,8 @@ MonoBehaviour:
   shieldDuration: 5
   shieldHealth: 50
   shieldEnergyCost: 20
+  GM: {fileID: 0}
+  SDP: {fileID: 0}
 --- !u!114 &4184539947467001770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -126,11 +128,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpaceshipVelocity: 10
   movement: 0
-  fuelTank: 1e+10
+  fuelTank: 100
   fuelCostPerSecond: 1
   decelerationFactor: 0.04
   angularVelocity: 180
   currentFuel: 0
+  GM: {fileID: 0}
+  SB: {fileID: 0}
 --- !u!114 &4033086188958432212
 MonoBehaviour:
   m_ObjectHideFlags: 0

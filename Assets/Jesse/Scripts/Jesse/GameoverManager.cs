@@ -18,13 +18,6 @@ public class GameoverManager : MonoBehaviour
     	// }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-
     public void GoMenu()
     {
     	StartCoroutine("_GoMenu");

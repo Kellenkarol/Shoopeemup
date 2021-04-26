@@ -176,6 +176,17 @@
                 },
                 {
                     "name": "",
+                    "id": "c72d2428-9363-44eb-931f-c6f87dfc60a5",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "e41d659a-652c-4e52-b64e-8a231dd0507f",
                     "path": "<Keyboard>/l",
                     "interactions": "",
@@ -193,6 +204,33 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shield",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "cbc9a143-c586-4cf5-814b-b2b4c90d3269",
+            "actions": [
+                {
+                    "name": "ConfirmAction",
+                    "type": "Button",
+                    "id": "4c55406e-ab85-4994-9b1a-23b1a2af1afb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "dcf8bc34-37ca-4888-aed0-c289e49e4ea8",
+                    "path": "<Keyboard>/enter",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ConfirmAction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

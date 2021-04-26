@@ -44,6 +44,8 @@ namespace Player {
                 objShoot.SetActive(false);
                 shootPool.Enqueue(objShoot);
             }
+
+            FindObjectOfType<Overcharge>().OverchargeRecovery = 1/heatLimit;
         }
 
         private void Update()
@@ -51,6 +53,7 @@ namespace Player {
             if (heatMeter >= 0) heatMeter -= Time.deltaTime * coolingPerSecond;
             else heated = false;
 
+            FindObjectOfType<Overcharge>().Shoots = (int)(heatMeter * 100 / heatLimit);
             if (CanShoot())
             {
                 ActivateShoots();

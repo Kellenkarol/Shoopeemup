@@ -27,19 +27,11 @@ namespace General
     {
         [SerializeField] [Range(0f, 1f)] private float masterVolume = .5f;
         [SerializeField] private Sound[] sounds;
-
-        private static AudioManager instance;
+        
         private AudioList currentSong;
 
         private void Awake()
         {
-            if (instance == null) instance = this;
-            else
-            {
-                Destroy(gameObject);
-                return;
-            }
-
             foreach (Sound s in sounds)
             {
                 s.source = gameObject.AddComponent<AudioSource>();

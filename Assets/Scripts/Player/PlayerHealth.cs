@@ -16,6 +16,8 @@ namespace Player
         [SerializeField] private float shieldHealth = 50f;
         [SerializeField] private float shieldEnergyCost = 20f;
 
+        private PlayerController playerController;
+
         private float shieldTimer;
         private float currentEnergy;
         private float currentHealth;
@@ -32,6 +34,7 @@ namespace Player
             currentEnergy = shieldEnergyCost;
             currentHealth = maxHealth;
             currentShieldHealth = shieldHealth;
+            playerController = GetComponent<PlayerController>();
         }
 
         private void Update()
@@ -83,16 +86,20 @@ namespace Player
 
             else
             {
-                FindObjectOfType<AudioManager>().Play(AudioList.playerDamaged);
-
                 currentHealth -= damage;
                 SDP.Damage(maxHealth, currentHealth);
                 if (currentHealth <= 0)
                 {
                 	isDestroyed = true;
-                	GM.StartGameOver();
-            	} 
-
+                    FindObjectOfType<AudioManager>().Stop(AudioList.gameplayMusic);
+                    FindObjectOfType<AudioManager>().Stop(AudioList.playerDestroyed);
+                    playerController.ResetVelocity();
+                    GM.StartGameOver();
+            	}
+                else
+                {
+                    FindObjectOfType<AudioManager>().Play(AudioList.playerDamaged);
+                }
             }
         }
 

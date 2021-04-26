@@ -49,6 +49,11 @@ namespace Player
             playerMovements.InputToMovement(playerInputs.GetMovementDirection());
         }
 
+        public void ResetVelocity()
+        {
+            playerMovements.VelocityToZero();
+        }
+
         public void RegisterDamage(float value)
         {
             playerHealth.RecieveDamage(value);
