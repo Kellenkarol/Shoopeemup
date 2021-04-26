@@ -41,5 +41,15 @@ namespace Colectable
                 gameObject.SetActive(false);
             }
         }
+
+        public ColectableType GetColectableType()
+        {
+            return colectableType;
+        }
+
+        public float GetValue()
+        {
+            return value;
+        }
     }
 }

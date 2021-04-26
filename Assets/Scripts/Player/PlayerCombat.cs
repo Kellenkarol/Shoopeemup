@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General;
 using Shoot;
 
 namespace Player {
@@ -65,13 +66,14 @@ namespace Player {
 
         private void ActivateShoots()
         {
+            FindObjectOfType<AudioManager>().Play(AudioList.playerShoot);
             GameObject spawnedShoot = shootPool.Dequeue();
 
             spawnedShoot.SetActive(true);
             spawnedShoot.GetComponent<ShootBehavior>().SetDamage(weaponDamage);
 
             spawnedShoot.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + zSpawnDistanceToPlayer);
-            spawnedShoot.transform.eulerAngles = new Vector3(90, transform.rotation.y, 0);
+            spawnedShoot.transform.eulerAngles = Vector3.zero;
 
             shootPool.Enqueue(spawnedShoot);
 

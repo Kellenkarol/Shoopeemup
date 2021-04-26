@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General;
 using Shoot;
 
 namespace Enemies
@@ -13,11 +14,11 @@ namespace Enemies
         [SerializeField] private int enemyShootPoolSize = 3;
 
         [Header("Shoot")]
+        [SerializeField] private Transform[] spawnPoint;
         [SerializeField] private float shootSpeed;
         [SerializeField] private float weaponDamage = 10f;
         [SerializeField] private float timeBetweenShoots = 4;
         [SerializeField] private float shootTimeVariance = 2;
-        [SerializeField] private float zSpawnDistanceToEnemy = 1.5f;
 
         private float currentShootTimeVariance;
         private float shootTimer = 0;
@@ -55,16 +56,21 @@ namespace Enemies
         private void ActivateShoot()
         {
             currentShootTimeVariance = GetNewShootTimeVariance();
+            FindObjectOfType<AudioManager>().Play(AudioList.enemyShoot);
 
-            GameObject spawnedShoot = shootPool.Dequeue();
+            for (int i = 0; i < spawnPoint.Length; i++)
+            {
+                GameObject spawnedShoot = shootPool.Dequeue();
 
-            spawnedShoot.SetActive(true);
-            spawnedShoot.GetComponent<ShootBehavior>().SetDamage(weaponDamage);
+                spawnedShoot.SetActive(true);
+                spawnedShoot.GetComponent<ShootBehavior>().SetDamage(weaponDamage);
+                spawnedShoot.GetComponent<ShootBehavior>().SetBulletSpeed(shootSpeed);
 
-            spawnedShoot.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z - zSpawnDistanceToEnemy);
-            spawnedShoot.transform.eulerAngles = new Vector3(90, transform.rotation.y, 0);
+                spawnedShoot.transform.position = spawnPoint[i].transform.position;
+                spawnedShoot.transform.eulerAngles = spawnPoint[i].eulerAngles;
 
-            shootPool.Enqueue(spawnedShoot);
+                shootPool.Enqueue(spawnedShoot);
+            }
         }
 
         private float GetNewShootTimeVariance()

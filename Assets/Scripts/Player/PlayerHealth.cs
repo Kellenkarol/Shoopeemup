@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General;
 
 namespace Player
 {
@@ -18,6 +19,7 @@ namespace Player
         private float shieldTimer;
         private float currentEnergy;
         private float currentHealth;
+        private float currentShieldHealth;
 
         private bool isShielding;
         private bool isDestroyed;
@@ -26,6 +28,7 @@ namespace Player
         {
             currentEnergy = shieldEnergyCost;
             currentHealth = maxHealth;
+            currentShieldHealth = shieldHealth;
         }
 
         private void Update()
@@ -51,6 +54,8 @@ namespace Player
                 isShielding = shield;
                 if (isShielding)
                 {
+                    FindObjectOfType<AudioManager>().Play(AudioList.playerShield);
+
                     shieldTimer = shieldDuration;
                     currentEnergy -= shieldEnergyCost;
                     shieldObject.SetActive(true);
@@ -60,9 +65,26 @@ namespace Player
 
         public void RecieveDamage(float damage)
         {
-            currentHealth -= damage;
+            if (isShielding)
+            {
+                currentShieldHealth -= damage;
+                if (currentShieldHealth <= 0)
+                {
+                    isShielding = false;
+                    shieldObject.SetActive(false);
+                    shieldTimer = 0;
 
-            if (currentHealth <= 0) isDestroyed = true;
+                    currentShieldHealth = shieldHealth;
+                }
+            }
+
+            else
+            {
+                FindObjectOfType<AudioManager>().Play(AudioList.playerDamaged);
+
+                currentHealth -= damage;
+                if (currentHealth <= 0) isDestroyed = true;
+            }
         }
 
         public void IncrementCurrentHealth(float value)

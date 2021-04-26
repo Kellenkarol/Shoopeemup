@@ -64,9 +64,9 @@ namespace Player
             playerHealth.IncrementCurrentEnergy(value);
         }
 
-        public void AddMoney(float value)
+        public void AddFuel(float value)
         {
-            Debug.Log("Dinheiro");
+            playerMovements.AddFuelToTank(value);
         }
     }
 }
