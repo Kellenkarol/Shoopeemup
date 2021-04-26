@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-	public Slider volumeSlider;
-	public AudioSource audio;
+	// public Slider volumeSlider;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +30,7 @@ public class PauseMenu : MonoBehaviour
     public void Restart()
     {
     	PlayerPrefs.SetInt("Score", 0);
-		SceneManager.LoadScene(3);
+		SceneManager.LoadScene(1);
     	// recomeça nível
     }
 
