@@ -19,9 +19,10 @@ public class ShowDamagePlayer : MonoBehaviour
     {
     	lifeBar.fillAmount = 1f;
     	lifeValue.text = Mathf.Ceil(lifeBar.fillAmount*100)+"%";
-    	Damage(450, 120);
+    	// Damage(450, 120);
     	// KillSomenthing();
     }
+
 
     // Update is called once per frame
     void Update()
@@ -29,48 +30,57 @@ public class ShowDamagePlayer : MonoBehaviour
         
     }
 
+
     public void Damage(float maxLife, float currentLife)
     {
         StartCoroutine(_Damage(maxLife, currentLife));
 
     }
 
+
     private IEnumerator _Damage(float maxLife, float currentLife)
     {
-    	yield return new WaitForSeconds(2); 
-    	while(true)
-    	{
-	    	imgs[1].gameObject.SetActive(false);
-	    	imgs[2].gameObject.SetActive(true);
-	    	// back.color = red;
-	    	// lifeBar.fillAmount = currentLife*100/maxLife/100;
-	    	lifeBar.fillAmount-=0.1f;
+    	// yield return new WaitForSeconds(2); 
+    	// while(true)
+    	// {
+	    	lifeBar.fillAmount = currentLife/maxLife;
+	    	// lifeBar.fillAmount-=0.1f;
 	    	lifeValue.text = Mathf.Ceil(lifeBar.fillAmount*100)+"%";
-	    	yield return new WaitForSeconds(0.75f); 
-	    	// back.color = white;
-	    	imgs[2].gameObject.SetActive(false);
-	    	yield return new WaitForSeconds(2); 
-    	}
+	    	if(Mathf.Ceil(lifeBar.fillAmount*100)!=0)
+	    	{
+		    	SoundManager.PlaySound("danoNave");
+		    	imgs[1].gameObject.SetActive(false);
+		    	imgs[2].gameObject.SetActive(true);
+		    	// back.color = red;
+		    	yield return new WaitForSeconds(0.75f); 
+		    	// back.color = white;
+		    	imgs[2].gameObject.SetActive(false);
+		    	yield return new WaitForSeconds(2); 
+	    	}
+	    	yield return null;
+    	// }
     }
+
 
     public void KillSomenthing()
     {
     	StartCoroutine("_KillSomenthing");
     }
 
+
     private IEnumerator _KillSomenthing()
     {
-    	while(true)
-    	{
+    	// while(true)
+    	// {
 
-	    	imgs[2].gameObject.SetActive(false);
-	    	imgs[1].gameObject.SetActive(true);
-	    	// back.color = green;
-	    	yield return new WaitForSeconds(0.75f); 
-	    	// back.color = white;
-	    	imgs[1].gameObject.SetActive(false);
-	    	yield return new WaitForSeconds(2); 
+    	imgs[2].gameObject.SetActive(false);
+    	imgs[1].gameObject.SetActive(true);
+    	// back.color = green;
+    	yield return new WaitForSeconds(0.75f); 
+    	// back.color = white;
+    	imgs[1].gameObject.SetActive(false);
+    	yield return new WaitForSeconds(2); 
 
-    	}
+    	// }
     }
 }
