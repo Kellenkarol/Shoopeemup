@@ -10,13 +10,15 @@ public class TravelledDistance : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	text = GetComponent<Text>();    
+    	text = GetComponent<Text>();  
+        print(dist);  
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
     	dist += Time.fixedDeltaTime;
+        PlayerPrefs.SetInt("Score", (int)(dist));
         text.text = ((int)(dist)).ToString();
     }
 }
