@@ -24,7 +24,7 @@ public class SettingsScript : MonoBehaviour
 
     void positionUISelectButton()
     {
-        selectButton.transform.localPosition = new Vector3(-113.5f + (113.5f* menuValueController), -77.5f, 0);
+        selectButton.transform.localPosition = new Vector3(-85 + (170f * menuValueController), -77.5f, 0);
     }
 
     void backMenu()

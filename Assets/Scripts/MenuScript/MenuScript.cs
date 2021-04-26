@@ -41,7 +41,7 @@ public class MenuScript : MonoBehaviour
 
     void positionUISelectButton()
     {
-        selectButton.transform.localPosition = new Vector3(0,26-(menuValueController*17), 0);
+        selectButton.transform.localPosition = new Vector3(0, 63- (menuValueController*44), 0);
     }
     void activeButton()
     {
