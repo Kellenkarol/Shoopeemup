@@ -1778,7 +1778,7 @@ MonoBehaviour:
       type: 3}
     size: 10
   enemyObjectParent: {fileID: 1906256975}
-  forceHordeIndex: 4
+  forceHordeIndex: -1
   hordesList:
   - tag: normal
     quantity: 5
