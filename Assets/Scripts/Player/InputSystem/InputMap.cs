@@ -191,6 +191,17 @@ namespace Player
                 },
                 {
                     ""name"": """",
+                    ""id"": ""c72d2428-9363-44eb-931f-c6f87dfc60a5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""e41d659a-652c-4e52-b64e-8a231dd0507f"",
                     ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
@@ -212,6 +223,33 @@ namespace Player
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Menu"",
+            ""id"": ""cbc9a143-c586-4cf5-814b-b2b4c90d3269"",
+            ""actions"": [
+                {
+                    ""name"": ""ConfirmAction"",
+                    ""type"": ""Button"",
+                    ""id"": ""4c55406e-ab85-4994-9b1a-23b1a2af1afb"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""dcf8bc34-37ca-4888-aed0-c289e49e4ea8"",
+                    ""path"": ""<Keyboard>/enter"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ConfirmAction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -221,6 +259,9 @@ namespace Player
             m_Player_Movement = m_Player.FindAction("Movement", throwIfNotFound: true);
             m_Player_Shoot = m_Player.FindAction("Shoot", throwIfNotFound: true);
             m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
+            // Menu
+            m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
+            m_Menu_ConfirmAction = m_Menu.FindAction("ConfirmAction", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -315,11 +356,48 @@ namespace Player
             }
         }
         public PlayerActions @Player => new PlayerActions(this);
+
+        // Menu
+        private readonly InputActionMap m_Menu;
+        private IMenuActions m_MenuActionsCallbackInterface;
+        private readonly InputAction m_Menu_ConfirmAction;
+        public struct MenuActions
+        {
+            private @InputMap m_Wrapper;
+            public MenuActions(@InputMap wrapper) { m_Wrapper = wrapper; }
+            public InputAction @ConfirmAction => m_Wrapper.m_Menu_ConfirmAction;
+            public InputActionMap Get() { return m_Wrapper.m_Menu; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(MenuActions set) { return set.Get(); }
+            public void SetCallbacks(IMenuActions instance)
+            {
+                if (m_Wrapper.m_MenuActionsCallbackInterface != null)
+                {
+                    @ConfirmAction.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirmAction;
+                    @ConfirmAction.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirmAction;
+                    @ConfirmAction.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnConfirmAction;
+                }
+                m_Wrapper.m_MenuActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @ConfirmAction.started += instance.OnConfirmAction;
+                    @ConfirmAction.performed += instance.OnConfirmAction;
+                    @ConfirmAction.canceled += instance.OnConfirmAction;
+                }
+            }
+        }
+        public MenuActions @Menu => new MenuActions(this);
         public interface IPlayerActions
         {
             void OnMovement(InputAction.CallbackContext context);
             void OnShoot(InputAction.CallbackContext context);
             void OnShield(InputAction.CallbackContext context);
+        }
+        public interface IMenuActions
+        {
+            void OnConfirmAction(InputAction.CallbackContext context);
         }
     }
 }

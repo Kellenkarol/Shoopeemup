@@ -1,3 +1,4 @@
+using Player;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,11 +6,30 @@ using UnityEngine;
 
 public class Tutorial : MonoBehaviour
 {
-	public GameObject imgTutorial, Ready, Go, block;
+    private InputMap inputActions;
+
+    public GameObject imgTutorial, Ready, Go, block;
 	public Animator animatorExit;
 	private bool skip, finished;
 	public static bool TutorialOn;
     // Start is called before the first frame update
+
+    private void Awake()
+    {
+        inputActions = new InputMap();
+
+        inputActions.Menu.ConfirmAction.performed += _ => Skip();
+    }
+
+    private void OnEnable()
+    {
+        inputActions.Enable();
+    }
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+
     void Start()
     {
         StartCoroutine("ShowTutorial");
