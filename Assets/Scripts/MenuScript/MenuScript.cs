@@ -8,14 +8,14 @@ public class MenuScript : MonoBehaviour
     // public GameObject selectButton;
     
     // Start is called before the first frame update
-    void Start()
-    {
+    // void Start()
+    // {
         
-    }
+    // }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
         /*if(Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (menuValueController > 0)
@@ -37,7 +37,7 @@ public class MenuScript : MonoBehaviour
         // {
         //     activeButton();
         // }
-    }
+    // }
 
     // void positionUISelectButton()
     // {
