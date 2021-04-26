@@ -28,6 +28,11 @@ namespace Enemies
             if (!enemyHealth.GetIsAlive()) gameObject.SetActive(false);
         }
 
+        public void DeactivateEnemy()
+        {
+            gameObject.SetActive(false);
+        }
+
         public void ActivateEnemy()
         {
             enemyHealth.fillHearth();

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using General;
 
 namespace Enemies
 {
@@ -24,6 +25,11 @@ namespace Enemies
             if(currentHealth <= 0)
             {
                 isAlive = false;
+                FindObjectOfType<AudioManager>().Play(AudioList.enemyDestroyed);
+            }
+            else
+            {
+                FindObjectOfType<AudioManager>().Play(AudioList.enemyDamaged);
             }
         }
 

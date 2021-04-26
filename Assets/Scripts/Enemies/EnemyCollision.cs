@@ -10,6 +10,9 @@ namespace Enemies
     {
         private EnemyController enemyController;
 
+        [SerializeField] private float collisionDamage = 30f;
+        [SerializeField] private string edgeWallTag = "EdgeWall";
+
         private void Awake()
         {
             enemyController = GetComponent<EnemyController>();
@@ -23,6 +26,19 @@ namespace Enemies
         public void DeliverBonus(ColectableType colectableType, float value)
         {
             throw new System.NotImplementedException();
+        }
+
+        public float GetDamage()
+        {
+            return collisionDamage;
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag(edgeWallTag))
+            {
+                enemyController.DeactivateEnemy();
+            }
         }
     }
 }
